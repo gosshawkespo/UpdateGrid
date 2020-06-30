@@ -551,6 +551,9 @@
         txtSearchDiv.Text = ""
         txtSearchSD.Text = ""
         txtSearchSupplier.Text = ""
+        txtSearchCat.Text = ""
+        txtSearchPage.Text = ""
+        txtSearchSect.Text = ""
         cbExact.Checked = False
 
     End Sub

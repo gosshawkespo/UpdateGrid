@@ -38,6 +38,7 @@
                 ModeSelect.ShowDialog()
                 GlobalSession.CurrentMode = ModeSelect.GetMode()
                 GlobalSession.CurrentServer = "PARAGON"
+
             Else
                 MsgBox("This application needs to be run from the ESPO Application Launcher",, "Error Loading Frameworks Application")
                 End
@@ -53,10 +54,15 @@
         stsFW100Label4.Text = "    Server: " & GlobalSession.CurrentServer & "   "
         stsFW100Label5.Text = "    Environment: " & GlobalSession.CurrentMode & "   "
         stsFW100Label6.Text = String.Format("    Version {0}", My.Application.Info.Version.ToString) & "   "
-        NormalToolStripMenuItem.Checked = True
-        DarkToolStripMenuItem.Checked = False
-        IBMToolStripMenuItem.Checked = True
-        MYSQLToolStripMenuItem.Checked = False
+        If GlobalSession.CurrentUserShort = "ddg407" Then
+            ToolsToolStripMenuItem.Visible = True
+            NormalToolStripMenuItem.Checked = True
+            DarkToolStripMenuItem.Checked = False
+            IBMToolStripMenuItem.Checked = True
+            MYSQLToolStripMenuItem.Checked = False
+        Else
+            ToolsToolStripMenuItem.Visible = False
+        End If
 
         For Each c As Control In Controls
             AddHandler c.MouseClick, AddressOf ClickHandler
@@ -159,5 +165,7 @@
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub tls1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles tls1.ItemClicked
 
+    End Sub
 End Class

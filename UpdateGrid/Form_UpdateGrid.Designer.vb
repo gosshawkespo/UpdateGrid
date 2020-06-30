@@ -31,9 +31,19 @@ Partial Class UpdateGrid
         Me.btnClear = New System.Windows.Forms.Button()
         Me.stsUpdateGrid = New System.Windows.Forms.StatusStrip()
         Me.stsUpdateGridLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.stsUpdateGridLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.CRUDUpdateGrid = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlSearch = New System.Windows.Forms.Panel()
+        Me.txtSearchPage = New System.Windows.Forms.TextBox()
+        Me.lblPage = New System.Windows.Forms.Label()
+        Me.txtSearchSect = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtSearchCat = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.cbReversed = New System.Windows.Forms.CheckBox()
+        Me.cboSortFields = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtSearchSupplier = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.cbExact = New System.Windows.Forms.CheckBox()
@@ -45,16 +55,6 @@ Partial Class UpdateGrid
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSearchDiv = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.cboSortFields = New System.Windows.Forms.ComboBox()
-        Me.cbReversed = New System.Windows.Forms.CheckBox()
-        Me.stsUpdateGridLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.txtSearchCat = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtSearchSect = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtSearchPage = New System.Windows.Forms.TextBox()
-        Me.lblPage = New System.Windows.Forms.Label()
         CType(Me.dgvUpdateGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlButtons.SuspendLayout()
         Me.stsUpdateGrid.SuspendLayout()
@@ -68,10 +68,10 @@ Partial Class UpdateGrid
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvUpdateGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUpdateGrid.Location = New System.Drawing.Point(0, 41)
+        Me.dgvUpdateGrid.Location = New System.Drawing.Point(0, 74)
         Me.dgvUpdateGrid.Name = "dgvUpdateGrid"
         Me.dgvUpdateGrid.RowHeadersWidth = 62
-        Me.dgvUpdateGrid.Size = New System.Drawing.Size(1242, 422)
+        Me.dgvUpdateGrid.Size = New System.Drawing.Size(1242, 389)
         Me.dgvUpdateGrid.TabIndex = 0
         '
         'pnlButtons
@@ -81,6 +81,7 @@ Partial Class UpdateGrid
         Me.pnlButtons.Controls.Add(Me.btnClose)
         Me.pnlButtons.Controls.Add(Me.btnUpdate)
         Me.pnlButtons.Controls.Add(Me.btnRefresh)
+        Me.pnlButtons.Controls.Add(Me.btnClear)
         Me.pnlButtons.Location = New System.Drawing.Point(0, 469)
         Me.pnlButtons.Name = "pnlButtons"
         Me.pnlButtons.Size = New System.Drawing.Size(1251, 34)
@@ -88,7 +89,7 @@ Partial Class UpdateGrid
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(288, 5)
+        Me.btnClose.Location = New System.Drawing.Point(266, 5)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 2
@@ -97,7 +98,7 @@ Partial Class UpdateGrid
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(100, 5)
+        Me.btnUpdate.Location = New System.Drawing.Point(88, 5)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btnUpdate.TabIndex = 1
@@ -115,11 +116,11 @@ Partial Class UpdateGrid
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(984, 5)
+        Me.btnClear.Location = New System.Drawing.Point(173, 5)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(42, 23)
+        Me.btnClear.Size = New System.Drawing.Size(83, 23)
         Me.btnClear.TabIndex = 17
-        Me.btnClear.Text = "Clear"
+        Me.btnClear.Text = "Clear Search"
         Me.btnClear.UseVisualStyleBackColor = True
         '
         'stsUpdateGrid
@@ -135,6 +136,11 @@ Partial Class UpdateGrid
         '
         Me.stsUpdateGridLabel1.Name = "stsUpdateGridLabel1"
         Me.stsUpdateGridLabel1.Size = New System.Drawing.Size(0, 17)
+        '
+        'stsUpdateGridLabel2
+        '
+        Me.stsUpdateGridLabel2.Name = "stsUpdateGridLabel2"
+        Me.stsUpdateGridLabel2.Size = New System.Drawing.Size(0, 17)
         '
         'CRUDUpdateGrid
         '
@@ -164,7 +170,6 @@ Partial Class UpdateGrid
         Me.pnlSearch.Controls.Add(Me.Label6)
         Me.pnlSearch.Controls.Add(Me.txtSearchSupplier)
         Me.pnlSearch.Controls.Add(Me.Label5)
-        Me.pnlSearch.Controls.Add(Me.btnClear)
         Me.pnlSearch.Controls.Add(Me.cbExact)
         Me.pnlSearch.Controls.Add(Me.txtSearchItemDesc)
         Me.pnlSearch.Controls.Add(Me.Label4)
@@ -176,12 +181,95 @@ Partial Class UpdateGrid
         Me.pnlSearch.Controls.Add(Me.Label1)
         Me.pnlSearch.Location = New System.Drawing.Point(3, 2)
         Me.pnlSearch.Name = "pnlSearch"
-        Me.pnlSearch.Size = New System.Drawing.Size(1239, 33)
+        Me.pnlSearch.Size = New System.Drawing.Size(1239, 66)
         Me.pnlSearch.TabIndex = 3
+        '
+        'txtSearchPage
+        '
+        Me.txtSearchPage.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtSearchPage.Location = New System.Drawing.Point(424, 6)
+        Me.txtSearchPage.Name = "txtSearchPage"
+        Me.txtSearchPage.Size = New System.Drawing.Size(36, 20)
+        Me.txtSearchPage.TabIndex = 9
+        Me.txtSearchPage.Text = "99999"
+        '
+        'lblPage
+        '
+        Me.lblPage.AutoSize = True
+        Me.lblPage.Location = New System.Drawing.Point(389, 9)
+        Me.lblPage.Name = "lblPage"
+        Me.lblPage.Size = New System.Drawing.Size(35, 13)
+        Me.lblPage.TabIndex = 8
+        Me.lblPage.Text = "Page:"
+        '
+        'txtSearchSect
+        '
+        Me.txtSearchSect.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtSearchSect.Location = New System.Drawing.Point(355, 6)
+        Me.txtSearchSect.Name = "txtSearchSect"
+        Me.txtSearchSect.Size = New System.Drawing.Size(26, 20)
+        Me.txtSearchSect.TabIndex = 7
+        Me.txtSearchSect.Text = "999"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(309, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(46, 13)
+        Me.Label8.TabIndex = 6
+        Me.Label8.Text = "Section:"
+        '
+        'txtSearchCat
+        '
+        Me.txtSearchCat.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtSearchCat.Location = New System.Drawing.Point(275, 6)
+        Me.txtSearchCat.Name = "txtSearchCat"
+        Me.txtSearchCat.Size = New System.Drawing.Size(26, 20)
+        Me.txtSearchCat.TabIndex = 5
+        Me.txtSearchCat.Text = "999"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(223, 9)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(52, 13)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "Category:"
+        '
+        'cbReversed
+        '
+        Me.cbReversed.AutoSize = True
+        Me.cbReversed.Location = New System.Drawing.Point(162, 35)
+        Me.cbReversed.Name = "cbReversed"
+        Me.cbReversed.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.cbReversed.Size = New System.Drawing.Size(46, 17)
+        Me.cbReversed.TabIndex = 20
+        Me.cbReversed.Text = "Rev"
+        Me.cbReversed.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cbReversed.UseVisualStyleBackColor = True
+        '
+        'cboSortFields
+        '
+        Me.cboSortFields.FormattingEnabled = True
+        Me.cboSortFields.Location = New System.Drawing.Point(49, 32)
+        Me.cboSortFields.Name = "cboSortFields"
+        Me.cboSortFields.Size = New System.Drawing.Size(105, 21)
+        Me.cboSortFields.TabIndex = 19
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(6, 35)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(43, 13)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "Sort by:"
         '
         'txtSearchSupplier
         '
-        Me.txtSearchSupplier.Location = New System.Drawing.Point(751, 6)
+        Me.txtSearchSupplier.Location = New System.Drawing.Point(913, 6)
         Me.txtSearchSupplier.Name = "txtSearchSupplier"
         Me.txtSearchSupplier.Size = New System.Drawing.Size(161, 20)
         Me.txtSearchSupplier.TabIndex = 15
@@ -189,7 +277,7 @@ Partial Class UpdateGrid
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(706, 9)
+        Me.Label5.Location = New System.Drawing.Point(865, 9)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(48, 13)
         Me.Label5.TabIndex = 14
@@ -198,7 +286,7 @@ Partial Class UpdateGrid
         'cbExact
         '
         Me.cbExact.AutoSize = True
-        Me.cbExact.Location = New System.Drawing.Point(918, 9)
+        Me.cbExact.Location = New System.Drawing.Point(1082, 8)
         Me.cbExact.Name = "cbExact"
         Me.cbExact.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.cbExact.Size = New System.Drawing.Size(53, 17)
@@ -209,7 +297,7 @@ Partial Class UpdateGrid
         '
         'txtSearchItemDesc
         '
-        Me.txtSearchItemDesc.Location = New System.Drawing.Point(539, 6)
+        Me.txtSearchItemDesc.Location = New System.Drawing.Point(692, 6)
         Me.txtSearchItemDesc.Name = "txtSearchItemDesc"
         Me.txtSearchItemDesc.Size = New System.Drawing.Size(165, 20)
         Me.txtSearchItemDesc.TabIndex = 13
@@ -217,7 +305,7 @@ Partial Class UpdateGrid
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(484, 9)
+        Me.Label4.Location = New System.Drawing.Point(634, 9)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 12
@@ -226,7 +314,7 @@ Partial Class UpdateGrid
         'txtSearchItemCode
         '
         Me.txtSearchItemCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchItemCode.Location = New System.Drawing.Point(381, 6)
+        Me.txtSearchItemCode.Location = New System.Drawing.Point(526, 6)
         Me.txtSearchItemCode.Name = "txtSearchItemCode"
         Me.txtSearchItemCode.Size = New System.Drawing.Size(100, 20)
         Me.txtSearchItemCode.TabIndex = 11
@@ -234,7 +322,7 @@ Partial Class UpdateGrid
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(326, 9)
+        Me.Label3.Location = New System.Drawing.Point(468, 9)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(58, 13)
         Me.Label3.TabIndex = 10
@@ -243,7 +331,7 @@ Partial Class UpdateGrid
         'txtSearchSD
         '
         Me.txtSearchSD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchSD.Location = New System.Drawing.Point(121, 6)
+        Me.txtSearchSD.Location = New System.Drawing.Point(194, 6)
         Me.txtSearchSD.Name = "txtSearchSD"
         Me.txtSearchSD.Size = New System.Drawing.Size(21, 20)
         Me.txtSearchSD.TabIndex = 3
@@ -252,16 +340,16 @@ Partial Class UpdateGrid
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(99, 9)
+        Me.Label2.Location = New System.Drawing.Point(125, 9)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(25, 13)
+        Me.Label2.Size = New System.Drawing.Size(69, 13)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "SD:"
+        Me.Label2.Text = "Sub Division:"
         '
         'txtSearchDiv
         '
         Me.txtSearchDiv.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchDiv.Location = New System.Drawing.Point(66, 6)
+        Me.txtSearchDiv.Location = New System.Drawing.Point(90, 6)
         Me.txtSearchDiv.Name = "txtSearchDiv"
         Me.txtSearchDiv.Size = New System.Drawing.Size(27, 20)
         Me.txtSearchDiv.TabIndex = 1
@@ -272,97 +360,9 @@ Partial Class UpdateGrid
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 13)
+        Me.Label1.Size = New System.Drawing.Size(84, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Search Div:"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(1035, 9)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(43, 13)
-        Me.Label6.TabIndex = 18
-        Me.Label6.Text = "Sort by:"
-        '
-        'cboSortFields
-        '
-        Me.cboSortFields.FormattingEnabled = True
-        Me.cboSortFields.Location = New System.Drawing.Point(1075, 6)
-        Me.cboSortFields.Name = "cboSortFields"
-        Me.cboSortFields.Size = New System.Drawing.Size(105, 21)
-        Me.cboSortFields.TabIndex = 19
-        '
-        'cbReversed
-        '
-        Me.cbReversed.AutoSize = True
-        Me.cbReversed.Location = New System.Drawing.Point(1183, 9)
-        Me.cbReversed.Name = "cbReversed"
-        Me.cbReversed.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.cbReversed.Size = New System.Drawing.Size(46, 17)
-        Me.cbReversed.TabIndex = 20
-        Me.cbReversed.Text = "Rev"
-        Me.cbReversed.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cbReversed.UseVisualStyleBackColor = True
-        '
-        'stsUpdateGridLabel2
-        '
-        Me.stsUpdateGridLabel2.Name = "stsUpdateGridLabel2"
-        Me.stsUpdateGridLabel2.Size = New System.Drawing.Size(0, 17)
-        '
-        'txtSearchCat
-        '
-        Me.txtSearchCat.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchCat.Location = New System.Drawing.Point(169, 6)
-        Me.txtSearchCat.Name = "txtSearchCat"
-        Me.txtSearchCat.Size = New System.Drawing.Size(26, 20)
-        Me.txtSearchCat.TabIndex = 5
-        Me.txtSearchCat.Text = "999"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(146, 9)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(26, 13)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "Cat:"
-        '
-        'txtSearchSect
-        '
-        Me.txtSearchSect.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchSect.Location = New System.Drawing.Point(226, 6)
-        Me.txtSearchSect.Name = "txtSearchSect"
-        Me.txtSearchSect.Size = New System.Drawing.Size(26, 20)
-        Me.txtSearchSect.TabIndex = 7
-        Me.txtSearchSect.Text = "999"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(197, 9)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(32, 13)
-        Me.Label8.TabIndex = 6
-        Me.Label8.Text = "Sect:"
-        '
-        'txtSearchPage
-        '
-        Me.txtSearchPage.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtSearchPage.Location = New System.Drawing.Point(287, 6)
-        Me.txtSearchPage.Name = "txtSearchPage"
-        Me.txtSearchPage.Size = New System.Drawing.Size(36, 20)
-        Me.txtSearchPage.TabIndex = 9
-        Me.txtSearchPage.Text = "99999"
-        '
-        'lblPage
-        '
-        Me.lblPage.AutoSize = True
-        Me.lblPage.Location = New System.Drawing.Point(255, 9)
-        Me.lblPage.Name = "lblPage"
-        Me.lblPage.Size = New System.Drawing.Size(35, 13)
-        Me.lblPage.TabIndex = 8
-        Me.lblPage.Text = "Page:"
+        Me.Label1.Text = "Search Division:"
         '
         'UpdateGrid
         '

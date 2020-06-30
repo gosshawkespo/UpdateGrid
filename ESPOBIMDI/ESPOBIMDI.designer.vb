@@ -60,11 +60,13 @@ Partial Class ESPOBIMDI
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.WindowToolStripMenuItem, Me.ToolsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.MdiWindowListItem = Me.WindowToolStripMenuItem
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1447, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(2170, 35)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -72,26 +74,26 @@ Partial Class ESPOBIMDI
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 29)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(141, 34)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GridTestToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(65, 29)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'GridTestToolStripMenuItem
         '
         Me.GridTestToolStripMenuItem.Name = "GridTestToolStripMenuItem"
-        Me.GridTestToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.GridTestToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.GridTestToolStripMenuItem.Text = "Grid Test"
         '
         'WindowToolStripMenuItem
@@ -99,123 +101,125 @@ Partial Class ESPOBIMDI
         Me.WindowToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TileHorizontalToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.CascadeToolStripMenuItem, Me.ArrangeToolStripMenuItem, Me.MinimiseAllToolStripMenuItem, Me.RestoreAllToolStripMenuItem, Me.CloseAllToolStripMenuItem})
         Me.WindowToolStripMenuItem.Name = "WindowToolStripMenuItem"
         Me.WindowToolStripMenuItem.ShortcutKeyDisplayString = "Manage Open Windows"
-        Me.WindowToolStripMenuItem.Size = New System.Drawing.Size(63, 20)
+        Me.WindowToolStripMenuItem.Size = New System.Drawing.Size(94, 29)
         Me.WindowToolStripMenuItem.Text = "Window"
         '
         'TileHorizontalToolStripMenuItem
         '
         Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
-        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.TileHorizontalToolStripMenuItem.Text = "Tile Horizontal"
         '
         'TileVerticalToolStripMenuItem
         '
         Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.TileVerticalToolStripMenuItem.Text = "Tile Vertical"
         '
         'CascadeToolStripMenuItem
         '
         Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.CascadeToolStripMenuItem.Text = "Cascade"
         '
         'ArrangeToolStripMenuItem
         '
         Me.ArrangeToolStripMenuItem.Name = "ArrangeToolStripMenuItem"
-        Me.ArrangeToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.ArrangeToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.ArrangeToolStripMenuItem.Text = "Arrange"
         '
         'MinimiseAllToolStripMenuItem
         '
         Me.MinimiseAllToolStripMenuItem.Name = "MinimiseAllToolStripMenuItem"
-        Me.MinimiseAllToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.MinimiseAllToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.MinimiseAllToolStripMenuItem.Text = "Minimise All"
         '
         'RestoreAllToolStripMenuItem
         '
         Me.RestoreAllToolStripMenuItem.Name = "RestoreAllToolStripMenuItem"
-        Me.RestoreAllToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.RestoreAllToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.RestoreAllToolStripMenuItem.Text = "Restore All"
         '
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.CloseAllToolStripMenuItem.Text = "Close All"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportFromCSVToolStripMenuItem, Me.ThemeToolStripMenuItem, Me.DBVersionToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(69, 29)
         Me.ToolsToolStripMenuItem.Text = "Tools"
         '
         'ImportFromCSVToolStripMenuItem
         '
         Me.ImportFromCSVToolStripMenuItem.Enabled = False
         Me.ImportFromCSVToolStripMenuItem.Name = "ImportFromCSVToolStripMenuItem"
-        Me.ImportFromCSVToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ImportFromCSVToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.ImportFromCSVToolStripMenuItem.Text = "Import from CSV"
         '
         'ThemeToolStripMenuItem
         '
         Me.ThemeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NormalToolStripMenuItem, Me.DarkToolStripMenuItem})
         Me.ThemeToolStripMenuItem.Name = "ThemeToolStripMenuItem"
-        Me.ThemeToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.ThemeToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.ThemeToolStripMenuItem.Text = "Theme"
         '
         'NormalToolStripMenuItem
         '
         Me.NormalToolStripMenuItem.CheckOnClick = True
         Me.NormalToolStripMenuItem.Name = "NormalToolStripMenuItem"
-        Me.NormalToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.NormalToolStripMenuItem.Size = New System.Drawing.Size(173, 34)
         Me.NormalToolStripMenuItem.Text = "Normal"
         '
         'DarkToolStripMenuItem
         '
         Me.DarkToolStripMenuItem.CheckOnClick = True
         Me.DarkToolStripMenuItem.Name = "DarkToolStripMenuItem"
-        Me.DarkToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.DarkToolStripMenuItem.Size = New System.Drawing.Size(173, 34)
         Me.DarkToolStripMenuItem.Text = "Dark"
         '
         'DBVersionToolStripMenuItem
         '
         Me.DBVersionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IBMToolStripMenuItem, Me.MYSQLToolStripMenuItem})
         Me.DBVersionToolStripMenuItem.Name = "DBVersionToolStripMenuItem"
-        Me.DBVersionToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.DBVersionToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
         Me.DBVersionToolStripMenuItem.Text = "DB Version"
         '
         'IBMToolStripMenuItem
         '
         Me.IBMToolStripMenuItem.Name = "IBMToolStripMenuItem"
-        Me.IBMToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.IBMToolStripMenuItem.Size = New System.Drawing.Size(172, 34)
         Me.IBMToolStripMenuItem.Text = "IBM"
         '
         'MYSQLToolStripMenuItem
         '
         Me.MYSQLToolStripMenuItem.Name = "MYSQLToolStripMenuItem"
-        Me.MYSQLToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.MYSQLToolStripMenuItem.Size = New System.Drawing.Size(172, 34)
         Me.MYSQLToolStripMenuItem.Text = "MYSQL"
         '
         'stsFWMainMenu
         '
+        Me.stsFWMainMenu.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.stsFWMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stsFW100Label1, Me.stsFW100Label2, Me.stsFW100Label3, Me.stsFW100Label4, Me.stsFW100Label5, Me.stsFW100Label6})
-        Me.stsFWMainMenu.Location = New System.Drawing.Point(0, 503)
+        Me.stsFWMainMenu.Location = New System.Drawing.Point(0, 786)
         Me.stsFWMainMenu.Name = "stsFWMainMenu"
-        Me.stsFWMainMenu.Size = New System.Drawing.Size(1447, 22)
+        Me.stsFWMainMenu.Padding = New System.Windows.Forms.Padding(2, 0, 21, 0)
+        Me.stsFWMainMenu.Size = New System.Drawing.Size(2170, 22)
         Me.stsFWMainMenu.TabIndex = 53
         '
         'stsFW100Label1
         '
         Me.stsFW100Label1.Name = "stsFW100Label1"
-        Me.stsFW100Label1.Size = New System.Drawing.Size(0, 17)
+        Me.stsFW100Label1.Size = New System.Drawing.Size(0, 15)
         Me.stsFW100Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'stsFW100Label2
         '
         Me.stsFW100Label2.Name = "stsFW100Label2"
-        Me.stsFW100Label2.Size = New System.Drawing.Size(0, 17)
+        Me.stsFW100Label2.Size = New System.Drawing.Size(0, 15)
         Me.stsFW100Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'stsFW100Label3
@@ -225,7 +229,7 @@ Partial Class ESPOBIMDI
             Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
         Me.stsFW100Label3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter
         Me.stsFW100Label3.Name = "stsFW100Label3"
-        Me.stsFW100Label3.Size = New System.Drawing.Size(4, 17)
+        Me.stsFW100Label3.Size = New System.Drawing.Size(4, 15)
         '
         'stsFW100Label4
         '
@@ -234,7 +238,7 @@ Partial Class ESPOBIMDI
             Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
         Me.stsFW100Label4.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter
         Me.stsFW100Label4.Name = "stsFW100Label4"
-        Me.stsFW100Label4.Size = New System.Drawing.Size(4, 17)
+        Me.stsFW100Label4.Size = New System.Drawing.Size(4, 15)
         '
         'stsFW100Label5
         '
@@ -243,7 +247,7 @@ Partial Class ESPOBIMDI
             Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
         Me.stsFW100Label5.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter
         Me.stsFW100Label5.Name = "stsFW100Label5"
-        Me.stsFW100Label5.Size = New System.Drawing.Size(4, 17)
+        Me.stsFW100Label5.Size = New System.Drawing.Size(4, 15)
         '
         'stsFW100Label6
         '
@@ -252,36 +256,39 @@ Partial Class ESPOBIMDI
             Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
         Me.stsFW100Label6.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter
         Me.stsFW100Label6.Name = "stsFW100Label6"
-        Me.stsFW100Label6.Size = New System.Drawing.Size(4, 17)
+        Me.stsFW100Label6.Size = New System.Drawing.Size(4, 15)
         '
         'tlsbExportToExcel
         '
         Me.tlsbExportToExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.tlsbExportToExcel.Enabled = False
         Me.tlsbExportToExcel.Name = "tlsbExportToExcel"
-        Me.tlsbExportToExcel.Size = New System.Drawing.Size(23, 22)
+        Me.tlsbExportToExcel.Size = New System.Drawing.Size(34, 23)
         Me.tlsbExportToExcel.Text = "Export to Excel"
         '
         'tls1
         '
+        Me.tls1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.tls1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tlsbExportToExcel})
-        Me.tls1.Location = New System.Drawing.Point(0, 24)
+        Me.tls1.Location = New System.Drawing.Point(0, 35)
         Me.tls1.Name = "tls1"
-        Me.tls1.Size = New System.Drawing.Size(1447, 25)
+        Me.tls1.Padding = New System.Windows.Forms.Padding(0, 0, 3, 0)
+        Me.tls1.Size = New System.Drawing.Size(2170, 28)
         Me.tls1.TabIndex = 52
         Me.tls1.Text = "ToolStrip1"
         '
         'ESPOBIMDI
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1447, 525)
+        Me.ClientSize = New System.Drawing.Size(2170, 808)
         Me.Controls.Add(Me.stsFWMainMenu)
         Me.Controls.Add(Me.tls1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "ESPOBIMDI"
         Me.Text = "ESPO Price Maintenance"
         Me.MenuStrip1.ResumeLayout(False)

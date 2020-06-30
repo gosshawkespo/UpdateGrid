@@ -92,15 +92,15 @@ Public Class UpdateGridDAL
         GetAPEMast = Nothing
         'EPOUTILTST/APEMaster
         SQLStatement = "SELECT " &
-            "DV as ""DV"", " &
-            "SD as ""SD"", " &
+            "DV as ""Division"", " &
+            "SD as ""Sub Division"", " &
             "RecordID as ""Record ID"", " &
             "trim(S21ItemCode) as ""S21 Item Code"", " &
-            "cata05 as ""Cat"", " &
-            "sect05 as ""Sect"", " &
+            "cata05 as ""Category"", " &
+            "sect05 as ""Section"", " &
             "Page05 as ""Page"", " &
             "trim(ItemDescription) as ""Item Description"", " &
-            "trim(dssp35) as ""Supp Code"", " &
+            "trim(dssp35) as ""Supplier Code"", " &
             "trim(snam05) as ""Supplier Name"", " &
             "NewBuyingPrice as ""New Buying Price"", " &
             "NewSellingPrice as ""New Selling Price"", " &
