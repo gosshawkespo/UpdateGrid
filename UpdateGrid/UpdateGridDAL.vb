@@ -4,12 +4,18 @@ Imports MySql.Data.MySqlClient
 Public Class UpdateGridDAL
 
     Function GetAPEMast(ConnectString As String, DV As String, SD As String, Cat As String, Sect As String, Page As String,
-                        ItemCode As String, ItemDesc As String, strSupplier As String, IsExact As Boolean, SortField As String, Reversed As Boolean) As DataTable
+                        ItemCode As String, ItemDesc As String, strSupplier As String, IsExact As Boolean, SortField As String, Reversed As Boolean,
+                        SortField2 As String, Reversed2 As Boolean) As DataTable
         Dim SQLStatement As String
         Dim cn As New OdbcConnection(ConnectString)
         Dim cm As OdbcCommand = cn.CreateCommand 'Create a command object via the connection
         Dim Criteria As String
+        Dim Sorted As String
+        Dim Dir1 As String = "ASC"
+        Dim Dir2 As String = "ASC"
 
+        If Reversed Then Dir1 = "DESC"
+        If Reversed2 Then Dir2 = "DESC"
         Criteria = ""
         If DV <> "" Then
             If Not IsExact Then
@@ -111,20 +117,21 @@ Public Class UpdateGridDAL
         If Len(Criteria) > 0 Then
             SQLStatement += " WHERE " & Criteria
         End If
-        If SortField <> "" Then
-            If SortField.ToUpper <> "UPDATED" Then
-                If Reversed Then
-                    SQLStatement += " ORDER BY """ & SortField & """ DESC"
-                Else
-                    SQLStatement += " ORDER BY """ & SortField & """ ASC"
-                End If
-            Else
-                'UPDATED is a boolean column type and not a DB field:
-            End If
 
+        Sorted = ""
+        If SortField <> "" And SortField.ToUpper <> "UPDATED" Then
+            Sorted += """" & SortField & """ " & Dir1
+        End If
+        If SortField2 <> "" And SortField2.ToUpper <> "UPDATED" Then
+            If Sorted <> "" Then Sorted += ","
+            Sorted += """" & SortField2 & """ " & Dir2
+        End If
+        If Sorted <> "" Then
+            SQLStatement += " ORDER BY " & Sorted
         Else
             SQLStatement += " ORDER BY ""Record ID"" "
         End If
+
 
         '
         'SQLStatement += "fetch first 3000 rows only "
@@ -237,7 +244,8 @@ Public Class UpdateGridDAL
 
 
     Function GetAPEMaster_MYSQL(ConnectString As String, DV As String, SD As String, Cat As String, Sect As String, Page As String,
-                                ItemCode As String, ItemDesc As String, strSupplier As String, IsExact As Boolean, SortField As String, Reversed As Boolean) As DataTable
+                                ItemCode As String, ItemDesc As String, strSupplier As String, IsExact As Boolean, SortField As String, Reversed As Boolean,
+                                SortField2 As String, Reversed2 As Boolean) As DataTable
         Dim SQLStatement As String
         Dim ConnString As String
         Dim ZeroDatetime As Boolean = True
@@ -247,9 +255,20 @@ Public Class UpdateGridDAL
         Dim password As String = "root"
         Dim port As String = "3306"
         Dim Criteria As String
+        Dim Sorted As String
+        Dim Dir1 As String
+        Dim Dir2 As String
 
         Try
             Criteria = ""
+            Dir1 = "ASC"
+            Dir2 = "ASC"
+            If Reversed Then
+                Dir1 = "DESC"
+            End If
+            If Reversed2 Then
+                Dir2 = "DESC"
+            End If
             If DV <> "" Then
                 If Not IsExact Then
                     Criteria += "DV like '%" & DV & "%'"
@@ -360,8 +379,19 @@ Public Class UpdateGridDAL
             If Len(Criteria) > 0 Then
                 SQLStatement += " WHERE " & Criteria
             End If
-            SQLStatement += " ORDER BY RecordID"
-
+            Sorted = ""
+            If SortField <> "" Then
+                Sorted += SortField & " " & Dir1
+            End If
+            If SortField2 <> "" Then
+                If Sorted <> "" Then Sorted += ","
+                Sorted += SortField2 & " " & Dir2
+            End If
+            If Sorted <> "" Then
+                SQLStatement += " ORDER BY " & Sorted
+            Else
+                SQLStatement += " ORDER BY RecordID"
+            End If
             cm.CommandTimeout = 0
             cm.CommandType = CommandType.Text
             cm.CommandText = SQLStatement

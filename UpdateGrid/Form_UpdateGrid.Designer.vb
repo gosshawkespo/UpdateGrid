@@ -55,6 +55,9 @@ Partial Class UpdateGrid
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSearchDiv = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cbReversed2 = New System.Windows.Forms.CheckBox()
+        Me.cboSortFields2 = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.dgvUpdateGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlButtons.SuspendLayout()
         Me.stsUpdateGrid.SuspendLayout()
@@ -68,7 +71,7 @@ Partial Class UpdateGrid
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvUpdateGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUpdateGrid.Location = New System.Drawing.Point(0, 74)
+        Me.dgvUpdateGrid.Location = New System.Drawing.Point(1, 74)
         Me.dgvUpdateGrid.Name = "dgvUpdateGrid"
         Me.dgvUpdateGrid.RowHeadersWidth = 62
         Me.dgvUpdateGrid.Size = New System.Drawing.Size(1242, 389)
@@ -82,7 +85,7 @@ Partial Class UpdateGrid
         Me.pnlButtons.Controls.Add(Me.btnUpdate)
         Me.pnlButtons.Controls.Add(Me.btnRefresh)
         Me.pnlButtons.Controls.Add(Me.btnClear)
-        Me.pnlButtons.Location = New System.Drawing.Point(0, 469)
+        Me.pnlButtons.Location = New System.Drawing.Point(1, 469)
         Me.pnlButtons.Name = "pnlButtons"
         Me.pnlButtons.Size = New System.Drawing.Size(1251, 34)
         Me.pnlButtons.TabIndex = 1
@@ -159,6 +162,9 @@ Partial Class UpdateGrid
         '
         Me.pnlSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlSearch.Controls.Add(Me.Label9)
+        Me.pnlSearch.Controls.Add(Me.cbReversed2)
+        Me.pnlSearch.Controls.Add(Me.cboSortFields2)
         Me.pnlSearch.Controls.Add(Me.txtSearchPage)
         Me.pnlSearch.Controls.Add(Me.lblPage)
         Me.pnlSearch.Controls.Add(Me.txtSearchSect)
@@ -179,7 +185,7 @@ Partial Class UpdateGrid
         Me.pnlSearch.Controls.Add(Me.Label2)
         Me.pnlSearch.Controls.Add(Me.txtSearchDiv)
         Me.pnlSearch.Controls.Add(Me.Label1)
-        Me.pnlSearch.Location = New System.Drawing.Point(3, 2)
+        Me.pnlSearch.Location = New System.Drawing.Point(1, 2)
         Me.pnlSearch.Name = "pnlSearch"
         Me.pnlSearch.Size = New System.Drawing.Size(1239, 66)
         Me.pnlSearch.TabIndex = 3
@@ -244,9 +250,9 @@ Partial Class UpdateGrid
         Me.cbReversed.Location = New System.Drawing.Point(162, 35)
         Me.cbReversed.Name = "cbReversed"
         Me.cbReversed.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.cbReversed.Size = New System.Drawing.Size(46, 17)
+        Me.cbReversed.Size = New System.Drawing.Size(88, 17)
         Me.cbReversed.TabIndex = 20
-        Me.cbReversed.Text = "Rev"
+        Me.cbReversed.Text = "Reverse Sort"
         Me.cbReversed.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cbReversed.UseVisualStyleBackColor = True
         '
@@ -364,6 +370,35 @@ Partial Class UpdateGrid
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Search Division:"
         '
+        'cbReversed2
+        '
+        Me.cbReversed2.AutoSize = True
+        Me.cbReversed2.Location = New System.Drawing.Point(403, 35)
+        Me.cbReversed2.Name = "cbReversed2"
+        Me.cbReversed2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.cbReversed2.Size = New System.Drawing.Size(88, 17)
+        Me.cbReversed2.TabIndex = 22
+        Me.cbReversed2.Text = "Reverse Sort"
+        Me.cbReversed2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cbReversed2.UseVisualStyleBackColor = True
+        '
+        'cboSortFields2
+        '
+        Me.cboSortFields2.FormattingEnabled = True
+        Me.cboSortFields2.Location = New System.Drawing.Point(290, 32)
+        Me.cboSortFields2.Name = "cboSortFields2"
+        Me.cboSortFields2.Size = New System.Drawing.Size(105, 21)
+        Me.cboSortFields2.TabIndex = 21
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(260, 35)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(28, 13)
+        Me.Label9.TabIndex = 23
+        Me.Label9.Text = "and:"
+        '
         'UpdateGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -419,4 +454,7 @@ Partial Class UpdateGrid
     Friend WithEvents Label8 As Label
     Friend WithEvents txtSearchCat As TextBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cbReversed2 As CheckBox
+    Friend WithEvents cboSortFields2 As ComboBox
 End Class

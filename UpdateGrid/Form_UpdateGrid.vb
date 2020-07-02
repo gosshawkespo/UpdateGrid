@@ -116,6 +116,7 @@
         Dim Criteria As String
         Dim IsExact As Boolean
         Dim Reversed As Boolean
+        Dim Reversed2 As Boolean
         Dim watch As Stopwatch
 
         dgvCheckUpdate.HeaderText = "UPDATED"
@@ -134,12 +135,13 @@
             dgvUpdateGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
             IsExact = cbExact.Checked
             Reversed = cbReversed.Checked
+            Reversed2 = cbReversed2.Checked
             If DBVersion = "MYSQL" Then
                 dt = DAL.GetAPEMaster_MYSQL(GlobalSession.ConnectString, txtSearchDiv.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
-                                    txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed)
+                                    txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
             Else
                 dt = DAL.GetAPEMast(GlobalSession.ConnectString, txtSearchDiv.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
-                                    txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed)
+                                    txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
             End If
             stsUpdateGridLabel1.Text = "Get Data...Completed. Populate Grid..."
             Refresh()
@@ -208,6 +210,7 @@
             ColumnName = dgvUpdateGrid.Columns(i).HeaderText
             If ColumnName.ToUpper <> "UPDATED" Then
                 cboSortFields.Items.Add(ColumnName)
+                cboSortFields2.Items.Add(ColumnName)
             End If
         Next
     End Sub
@@ -555,6 +558,10 @@
         txtSearchPage.Text = ""
         txtSearchSect.Text = ""
         cbExact.Checked = False
+        cboSortFields.Text = ""
+        cboSortFields2.Text = ""
+        cbReversed.Checked = False
+        cbReversed2.Checked = False
 
     End Sub
 
