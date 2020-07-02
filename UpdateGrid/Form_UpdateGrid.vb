@@ -173,6 +173,7 @@
             stsUpdateGridLabel2.Text = "Records: " & CStr(dt.Rows.Count)
             txtSearchDiv.Focus()
             Refresh()
+
         Catch ex As Exception
             Cursor = Cursors.Default
             MsgBox("Error in PopulateForm(): " & ex.Message)
@@ -206,11 +207,13 @@
         Dim ColumnName As String
 
         cboSortFields.Items.Clear()
+        cboSortFields2.Items.Clear()
         For i As Integer = 0 To dgvUpdateGrid.Columns.Count - 1
             ColumnName = dgvUpdateGrid.Columns(i).HeaderText
             If ColumnName.ToUpper <> "UPDATED" Then
                 cboSortFields.Items.Add(ColumnName)
                 cboSortFields2.Items.Add(ColumnName)
+
             End If
         Next
     End Sub
