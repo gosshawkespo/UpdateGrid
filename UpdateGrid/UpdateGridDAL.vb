@@ -3,20 +3,18 @@ Imports MySql.Data
 Imports MySql.Data.MySqlClient
 Public Class UpdateGridDAL
 
-    Function GetAPEMast(ConnectString As String, DV As String, SD As String, Cat As String, Sect As String, Page As String,
+    Function GetAPEMast(ConnectString As String, Criteria As String, DV As String, SD As String, Cat As String, Sect As String, Page As String,
                         ItemCode As String, ItemDesc As String, strSupplier As String, IsExact As Boolean, SortField As String, Reversed As Boolean,
                         SortField2 As String, Reversed2 As Boolean) As DataTable
         Dim SQLStatement As String
         Dim cn As New OdbcConnection(ConnectString)
         Dim cm As OdbcCommand = cn.CreateCommand 'Create a command object via the connection
-        Dim Criteria As String
         Dim Sorted As String
         Dim Dir1 As String = "ASC"
         Dim Dir2 As String = "ASC"
 
         If Reversed Then Dir1 = "DESC"
         If Reversed2 Then Dir2 = "DESC"
-        Criteria = ""
         If DV <> "" Then
             If Not IsExact Then
                 Criteria += "DV like '%" & DV & "%'"
@@ -97,7 +95,10 @@ Public Class UpdateGridDAL
 
         GetAPEMast = Nothing
         'EPOUTILTST/APEMaster
-        SQLStatement = "SELECT " &
+        If InStr(Criteria.ToUpper, "SELECT") > 0 Then
+            SQLStatement = Criteria
+        Else
+            SQLStatement = "SELECT " &
             "DV as ""Division"", " &
             "SD as ""Sub Division"", " &
             "RecordID as ""Record ID"", " &
@@ -113,9 +114,18 @@ Public Class UpdateGridDAL
             "@@Profit as ""Profit"", " &
             "@@Margin as ""Margin%"" " &
             "FROM APEMastV01 "
+        End If
+
 
         If Len(Criteria) > 0 Then
-            SQLStatement += " WHERE " & Criteria
+
+            If InStr(Criteria.ToUpper, "FETCH") > 0 Then
+                SQLStatement += " " & Criteria
+            ElseIf InStr(Criteria.ToUpper, "SELECT") > 0 Then
+                SQLStatement = Criteria
+            Else
+                SQLStatement += " WHERE " & Criteria
+            End If
         End If
 
         Sorted = ""
@@ -132,6 +142,59 @@ Public Class UpdateGridDAL
             SQLStatement += " ORDER BY ""Record ID"" "
         End If
 
+
+        '
+        'SQLStatement += "fetch first 3000 rows only "
+        cn.Open()
+        cm.CommandTimeout = 0
+        cm.CommandType = CommandType.Text
+        cm.CommandText = SQLStatement
+        Dim da As New OdbcDataAdapter(cm)
+        Dim ds As New DataSet
+        da.Fill(ds)
+        Return ds.Tables(0)
+    End Function
+
+    Function GetAPEMast_1Record(ConnectString As String, Criteria As String) As DataTable
+        Dim SQLStatement As String
+        Dim cn As New OdbcConnection(ConnectString)
+        Dim cm As OdbcCommand = cn.CreateCommand 'Create a command object via the connection
+        Dim Sorted As String
+        Dim Dir1 As String = "ASC"
+        Dim Dir2 As String = "ASC"
+
+        GetAPEMast_1Record = Nothing
+        'EPOUTILTST/APEMaster
+        If InStr(Criteria.ToUpper, "SELECT") > 0 Then
+            SQLStatement = Criteria
+        Else
+            SQLStatement = "SELECT " &
+            "DV as ""Division"", " &
+            "SD as ""Sub Division"", " &
+            "RecordID as ""Record ID"", " &
+            "trim(S21ItemCode) as ""S21 Item Code"", " &
+            "cata05 as ""Category"", " &
+            "sect05 as ""Section"", " &
+            "Page05 as ""Page"", " &
+            "trim(ItemDescription) as ""Item Description"", " &
+            "trim(dssp35) as ""Supplier Code"", " &
+            "trim(snam05) as ""Supplier Name"", " &
+            "NewBuyingPrice as ""New Buying Price"", " &
+            "NewSellingPrice as ""New Selling Price"", " &
+            "@@Profit as ""Profit"", " &
+            "@@Margin as ""Margin%"" " &
+            "FROM APEMastV01 "
+        End If
+
+
+        If Len(Criteria) > 0 Then
+
+            If InStr(Criteria.ToUpper, "FETCH") > 0 Then
+                SQLStatement += " " & Criteria
+            Else
+                SQLStatement += " WHERE " & Criteria
+            End If
+        End If
 
         '
         'SQLStatement += "fetch first 3000 rows only "

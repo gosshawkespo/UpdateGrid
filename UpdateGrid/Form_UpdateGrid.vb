@@ -88,7 +88,7 @@
         'dgvUpdateGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         dgvUpdateGrid.AllowUserToOrderColumns = True
         dgvUpdateGrid.AllowUserToResizeColumns = True
-        txtSearchDiv.Text = ""
+        cboDivision.Text = ""
         txtSearchSD.Text = ""
         txtSearchItemCode.Text = ""
         txtSearchItemDesc.Text = ""
@@ -96,7 +96,7 @@
         txtSearchPage.Text = ""
         txtSearchSect.Text = ""
         txtSearchSupplier.Text = ""
-        txtSearchDiv.Focus()
+        cboDivision.Focus()
         'dgvUpdateGrid.AllowUserToAddRows = True
         'dgvUpdateGrid.AllowUserToDeleteRows = True
         'dgvUpdateGrid.MultiSelect = True
@@ -108,6 +108,63 @@
         For Each c As Control In Controls
             AddHandler c.MouseClick, AddressOf ClickHandler
         Next
+        InitializeForm()
+    End Sub
+
+    Function IsInCombo(cbo As ComboBox, FindItem As String) As Boolean
+        IsInCombo = False
+        If cbo.Items.Contains(FindItem) Then
+            Return True
+        End If
+    End Function
+
+    Sub InitializeForm()
+        Dim dt As DataTable
+        Dim Criteria As String
+        Dim IsExact As Boolean
+        Dim Reversed As Boolean
+        Dim Reversed2 As Boolean
+        Dim DivValue As String
+
+        Criteria = "FETCH FIRST 1 ROWS ONLY"
+        If DBVersion = "MYSQL" Then
+            dt = DAL.GetAPEMaster_MYSQL(GlobalSession.ConnectString, cboDivision.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
+                                txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
+        Else
+            dt = DAL.GetAPEMast_1Record(GlobalSession.ConnectString, Criteria)
+        End If
+
+        stsUpdateGridLabel1.Text = "Get Data...Completed. Populate Grid..."
+        Refresh()
+        If dt IsNot Nothing Then
+            'dgvUpdateGrid.DataSource = dt
+            PopulateSortFieldsCombo(dt)
+        End If
+        Criteria = "SELECT " &
+            "DV as ""Division"", " &
+            "SD as ""Sub Division"", " &
+            "RecordID as ""Record ID"" " &
+            "FROM APEMastV01 "
+        If DBVersion = "MYSQL" Then
+            dt = DAL.GetAPEMaster_MYSQL(GlobalSession.ConnectString, cboDivision.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
+                                txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
+        Else
+            dt = DAL.GetAPEMast(GlobalSession.ConnectString, Criteria, cboDivision.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
+                                txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
+        End If
+        cboDivision.Items.Clear()
+
+        If dt IsNot Nothing Then
+            For I As Integer = 0 To dt.Rows.Count - 1
+                DivValue = dt.Rows(I)("Division").ToString
+                If Not IsInCombo(cboDivision, DivValue) And DivValue <> "" Then
+                    cboDivision.Items.Add(DivValue)
+                End If
+            Next
+        End If
+        dt = Nothing
+        dgvUpdateGrid.Columns.Clear()
+        stsUpdateGridLabel1.Text = ""
     End Sub
 
     Sub PopulateForm()
@@ -136,16 +193,16 @@
             IsExact = cbExact.Checked
             Reversed = cbReversed.Checked
             Reversed2 = cbReversed2.Checked
+            Criteria = ""
             If DBVersion = "MYSQL" Then
-                dt = DAL.GetAPEMaster_MYSQL(GlobalSession.ConnectString, txtSearchDiv.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
+                dt = DAL.GetAPEMaster_MYSQL(GlobalSession.ConnectString, cboDivision.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
                                     txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
             Else
-                dt = DAL.GetAPEMast(GlobalSession.ConnectString, txtSearchDiv.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
+                dt = DAL.GetAPEMast(GlobalSession.ConnectString, Criteria, cboDivision.Text, txtSearchSD.Text, txtSearchCat.Text, txtSearchSect.Text, txtSearchPage.Text,
                                     txtSearchItemCode.Text, txtSearchItemDesc.Text, txtSearchSupplier.Text, IsExact, cboSortFields.Text, Reversed, cboSortFields2.Text, Reversed2)
             End If
             stsUpdateGridLabel1.Text = "Get Data...Completed. Populate Grid..."
             Refresh()
-
             If dt IsNot Nothing Then
                 dgvUpdateGrid.DataSource = dt
                 stsUpdateGridLabel2.Text = "Records: " & CStr(dt.Rows.Count)
@@ -157,7 +214,7 @@
             stsUpdateGridLabel1.Text = "Format Grid..."
             Refresh()
             RightAlignNumerics()
-            PopulateSortFieldsCombo()
+            'PopulateSortFieldsCombo(dt)
 
             If Me.LastEditRow > 0 And Me.LastEditRow < dgvUpdateGrid.Rows.Count - 1 Then
                 dgvUpdateGrid.Rows(Me.LastEditRow).Selected = True
@@ -171,7 +228,7 @@
             watch.Stop()
             stsUpdateGridLabel1.Text = "Completed in " & " (" & Format(watch.Elapsed.TotalSeconds, "##,##0.00") & " seconds)"
             stsUpdateGridLabel2.Text = "Records: " & CStr(dt.Rows.Count)
-            txtSearchDiv.Focus()
+            cboDivision.Focus()
             Refresh()
 
         Catch ex As Exception
@@ -203,19 +260,22 @@
 
     End Sub
 
-    Sub PopulateSortFieldsCombo()
+    Sub PopulateSortFieldsCombo(dt As DataTable)
         Dim ColumnName As String
 
         cboSortFields.Items.Clear()
         cboSortFields2.Items.Clear()
-        For i As Integer = 0 To dgvUpdateGrid.Columns.Count - 1
-            ColumnName = dgvUpdateGrid.Columns(i).HeaderText
-            If ColumnName.ToUpper <> "UPDATED" Then
-                cboSortFields.Items.Add(ColumnName)
-                cboSortFields2.Items.Add(ColumnName)
+        If dt IsNot Nothing Then
+            For i As Integer = 0 To dt.Columns.Count - 1
+                'ColumnName = dgvUpdateGrid.Columns(i).HeaderText
+                ColumnName = dt.Columns(i).ColumnName
+                If ColumnName.ToUpper <> "UPDATED" Then
+                    cboSortFields.Items.Add(ColumnName)
+                    cboSortFields2.Items.Add(ColumnName)
+                End If
+            Next
+        End If
 
-            End If
-        Next
     End Sub
 
     Sub RightAlignNumerics()
@@ -554,7 +614,7 @@
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         txtSearchItemCode.Text = ""
         txtSearchItemDesc.Text = ""
-        txtSearchDiv.Text = ""
+        cboDivision.Text = ""
         txtSearchSD.Text = ""
         txtSearchSupplier.Text = ""
         txtSearchCat.Text = ""
@@ -565,6 +625,7 @@
         cboSortFields2.Text = ""
         cbReversed.Checked = False
         cbReversed2.Checked = False
+        cboDivision.Focus()
 
     End Sub
 
